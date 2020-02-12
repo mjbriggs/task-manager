@@ -1,18 +1,37 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    
+    <MainVue/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+//import HelloWorld from './components/HelloWorld'
+import MainVue from './components/MainVue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    //HelloWorld
+    MainVue
+  },
+
+   // TODO: can we move it to the MainVue component?
+    data(){
+        return {
+            /*
+            format for a task
+            {
+                class: "cs356",
+                name: "p1",
+                priority: "high",
+                dueDate: "too soon"
+            }
+
+            */
+            Tasks: []
+        }
+    }
 }
 </script>
 
