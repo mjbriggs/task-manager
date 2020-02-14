@@ -49,23 +49,13 @@
 
 <script type = 'text/javascript' >
 export default {
-  props: ['Tasks'],
   data () {
     return {
-      isAdding: false, // used to show adding task block and +/- icon
+      isAdding: false, // show adding task block and +/- icon
       classInput: '',
       taskInput: '',
       priorityInput: '',
       dueDateInput: ''
-      /*
-        format for a task
-        {
-            class: 'cs356',
-            name: 'p1',
-            priority: 'high',
-            dueDate: 'too soon'
-        }
-      */
     }
   },
 
@@ -84,7 +74,7 @@ export default {
             'dueDate': this.dueDateInput
           }
           console.log('Emitting newTask')
-          console.log(newTask)
+          console.log('AddTask.addTask(): ' + newTask)
           this.$emit('add-task', newTask)
 
           this.taskInput = ''
@@ -100,12 +90,6 @@ export default {
     },
     cancelAdd () {
       this.isAdding = false
-    },
-    showInput () {
-      console.log(this.classInput + ', ' +
-        this.taskInput + ', ' +
-        this.priorityInput + ', ' +
-        this.dueDateInput)
     }
   }
 }

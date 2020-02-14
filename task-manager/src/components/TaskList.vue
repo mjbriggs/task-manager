@@ -12,7 +12,7 @@ import Task from './Task'
 export default {
   props: ['Tasks'],
   components: {
-    Task,
+    Task
   },
   methods: {
     deleteTask (task) {

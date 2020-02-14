@@ -1,19 +1,21 @@
 <template>
   <div id='app'>
     <AddTask v-on:add-task='addTask'/>
+    <TaskList v-bind:Tasks="Tasks"/>
   </div>
 </template>
 
 <script>
 import AddTask from './components/AddTask'
+import TaskList from './components/TaskList'
 
 export default {
   name: 'App',
   components: {
-    AddTask
+    AddTask,
+    TaskList
   },
 
-  // TODO: can we move it to the MainVue component?
   data () {
     return {
       /*
@@ -30,7 +32,7 @@ export default {
   },
   methods: {
     addTask (task) {
-      console.log('recieved task ' + task)
+      console.log('received task ' + task.name + ', ' + task.class)
       this.Tasks.push(task)
       console.log('We have ' + this.Tasks.length + ' tasks')
     }
