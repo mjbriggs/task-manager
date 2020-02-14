@@ -3,12 +3,12 @@
       
     <div class="content" >
       <div class='header'>
-          {{ task.class }}
+          Class: {{ task.class }},    Name: {{ task.name }},    Priority: {{ task.priority }}
       </div>
-      <div class='meta'>
-          {{ task.name }}
+      <div class="header">
+        Due Date: {{ task.dueDate }}
       </div>
-    </div>
+      </div>
     <div class='ui bottom attached green basic button' >
         Completed
     </div>
