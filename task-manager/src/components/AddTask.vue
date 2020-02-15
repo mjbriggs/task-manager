@@ -5,11 +5,11 @@
     <h1>Sort My Tasks</h1>
 
     <div class='ui basic content center aligned segment'>
-      <button class='ui basic button icon' v-on:click='addTask'>
+      <button class='ui basic button icon' v-on:click='toggleAdd'>
         <h2>
           Add a task
-          <i class='plus icon' v-show='!isAdding' v-on:click='tryAdd'></i>
-          <i class='minus icon' v-show='isAdding' v-on:click='cancelAdd'></i>
+          <i class='plus icon' v-show='!isAdding' ></i>
+          <i class='minus icon' v-show='isAdding' ></i>
         </h2>
       </button>
       <div class='ui centered card' v-show='isAdding'>
@@ -36,7 +36,7 @@
               </div>
             <div class='field'>
                 <label>Due Date</label>
-                <input type='text' placeholder='MM/DD/YYYY' v-model='dueDateInput' defaultValue />
+                <input type='date' placeholder='MM/DD/YYYY' v-model='dueDateInput' defaultValue />
             </div>
 
             <div class='ui two button attached buttons'>
@@ -79,6 +79,13 @@ export default {
   },
 
   methods: {
+    toggleAdd () {
+      if (this.isAdding) {
+        this.cancelAdd()
+      } else {
+        this.tryAdd()
+      }
+    },
     addTask () {
       if (this.isAdding) {
         if (this.taskInput.length > 0 &&
