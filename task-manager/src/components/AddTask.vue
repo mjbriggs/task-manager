@@ -1,4 +1,4 @@
-<template lang="html">
+<template lang='html'>
   <div>
     <!-- vue requires a main div for the component -->
 
@@ -28,15 +28,15 @@
             <div class='field'>
                 <label>Priority</label>
                 <sui-dropdown
-                  placeholder="Priority"
+                  placeholder='Priority'
                   selection
-                  :options="options"
-                  v-model="priorityInput"
+                  :options='options'
+                  v-model='priorityInput'
                 />
               </div>
             <div class='field'>
                 <label>Due Date</label>
-                <input type='date' placeholder='MM/DD/YYYY' v-model='dueDateInput' defaultValue />
+                <input type='date' v-model='dueDateInput' defaultValue />
             </div>
 
             <div class='ui two button attached buttons'>
@@ -92,11 +92,13 @@ export default {
           this.priorityInput != null &&
           this.classInput.length > 0 &&
           this.dueDateInput.length > 0) {
+          let dateFields = this.dueDateInput.split('-')
+          let reformattedDate = dateFields[1] + '/' + dateFields[2] + '/' + dateFields[0]
           let newTask = {
             'class': this.classInput,
             'name': this.taskInput,
             'priority': this.priorityInput,
-            'dueDate': this.dueDateInput
+            'dueDate': reformattedDate
           }
           console.log('Emitting newTask')
           console.log('AddTask.addTask(): ' + newTask)
