@@ -1,7 +1,7 @@
 <template>
  <div>
     <p>Tasks</p>
-    <Task v-on:delete-task='deleteTask' v-on:complete-task='completeTask'
+    <Task v-on:delete-task='deleteTask' v-on:task-complete='completeTask'
     v-for='task in Tasks' v-bind:key='task' v-bind:task='task'></Task>
   </div>
 </template>
@@ -20,10 +20,11 @@ export default {
       this.Tasks.splice(taskIndex, 1)
     },
     completeTask (task) {
-      const taskIndex = this.Tasks.indexOf(task)
-      this.Tasks[taskIndex].done = true
-    },
-  },
+      // const taskIndex = this.Tasks.indexOf(task)
+      // this.Tasks[taskIndex].done = true
+      this.deleteTask(task)
+    }
+  }
 }
 </script>
 <style>

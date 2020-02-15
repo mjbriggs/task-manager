@@ -89,6 +89,10 @@ export default {
       this.isAdding = true
     },
     cancelAdd () {
+      this.taskInput = ''
+      this.priorityInput = ''
+      this.dueDateInput = ''
+      this.classInput = ''
       this.isAdding = false
     }
   }
