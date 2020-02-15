@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div>
     <!-- vue requires a main div for the component -->
 
@@ -24,14 +24,19 @@
                 <label>Task</label>
                 <input type='text' v-model='taskInput' defaultValue />
               </div>
-              <div class='field'>
-                <label>Priority</label>
-                <input type='text' v-model='priorityInput' defaultValue />
-              </div>
             </div>
             <div class='field'>
+                <label>Priority</label>
+                <sui-dropdown
+                  placeholder="Priority"
+                  selection
+                  :options="options"
+                  v-model="priorityInput"
+                />
+              </div>
+            <div class='field'>
                 <label>Due Date</label>
-                <input type='text' v-model='dueDateInput' defaultValue />
+                <input type='text' placeholder='MM/DD/YYYY' v-model='dueDateInput' defaultValue />
             </div>
 
             <div class='ui two button attached buttons'>
@@ -54,17 +59,30 @@ export default {
       isAdding: false, // show adding task block and +/- icon
       classInput: '',
       taskInput: '',
-      priorityInput: '',
-      dueDateInput: ''
+      priorityInput: null,
+      dueDateInput: '',
+      options: [
+        {
+          text: 'Low',
+          value: 'Low'
+        },
+        {
+          text: 'Medium',
+          value: 'Medium'
+        },
+        {
+          text: 'High',
+          value: 'High'
+        }
+      ]
     }
   },
 
   methods: {
     addTask () {
       if (this.isAdding) {
-        console.log(this.taskInput.length)
         if (this.taskInput.length > 0 &&
-          this.priorityInput.length > 0 &&
+          this.priorityInput != null &&
           this.classInput.length > 0 &&
           this.dueDateInput.length > 0) {
           let newTask = {
@@ -78,7 +96,7 @@ export default {
           this.$emit('add-task', newTask)
 
           this.taskInput = ''
-          this.priorityInput = ''
+          this.priorityInput = null
           this.dueDateInput = ''
           this.classInput = ''
           this.isAdding = false
@@ -90,7 +108,7 @@ export default {
     },
     cancelAdd () {
       this.taskInput = ''
-      this.priorityInput = ''
+      this.priorityInput = null
       this.dueDateInput = ''
       this.classInput = ''
       this.isAdding = false

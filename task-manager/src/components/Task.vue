@@ -2,7 +2,7 @@
 <div class='ui centered card'>
   <div class="content" >
     <div class='header'>
-        Class: {{ task.class }},    Name: {{ task.name }},    Priority: {{ task.priority }}
+        Class: {{ task.class }},    Name: {{ task.name }},    Priority: {{ task.priority }},
     </div>
     <div class="header">
       Due Date: {{ task.dueDate }}
