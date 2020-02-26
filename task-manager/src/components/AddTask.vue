@@ -87,13 +87,14 @@ export default {
       }
     },
     addTask () {
+
       if (this.isAdding) {
-        if (this.taskInput.length > 0 &&
-          this.priorityInput != null &&
-          this.classInput.length > 0 &&
-          this.dueDateInput.length > 0) {
+        if (this.taskInput.length > 0 && this.priorityInput != null &&
+          this.classInput.length > 0 && this.dueDateInput.length > 0) {
+
           let dateFields = this.dueDateInput.split('-')
           let reformattedDate = dateFields[1] + '/' + dateFields[2] + '/' + dateFields[0]
+
           let newTask = {
             'class': this.classInput,
             'name': this.taskInput,
