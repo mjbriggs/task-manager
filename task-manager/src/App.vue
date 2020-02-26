@@ -3,10 +3,17 @@
     <AddTask v-on:add-task='addTask'/>
 
     <!-- RATIO button for sorting -->
-    <input type="radio" id=" " name="gender" value="male">
-    <label for="male">Male</label><br>
-    <input type="radio" id="female" name="gender" value="female">
-    <label for="female">Female</label><br>
+    
+    <label for="one">
+      sort by:   
+    <input type="radio" id="sortingType" value="date" 
+    v-model="sortByPriority">
+    date   
+    <input type="radio" id="prioritySorting" value="priority" 
+    v-model="sortByPriority">
+    priority
+    CHANGE = {{sortByPriority}}
+    </label>
 
     <TaskList v-bind:Tasks="Tasks"/>
   </div>
@@ -30,26 +37,35 @@ export default {
       {
         class: 'cs356',
         name: 'p1',
-        priority: 0,1,2
+        priority: 
         dueDate: 'too soon'
       }
       */
-      Tasks: []
+      Tasks: [],
+      sortByPriority: "priority"
     }
   },
+  watch: {
+    sortByPriority: function() { this.sort(); }
+  },
   methods: {
+
     addTask (task) {
-      console.log('received task ' + task.name + ', ' + task.class + ", priority: " + task.priority)
-      this.Tasks.push(task)
-      console.log('We have ' + this.Tasks.length + ' tasks')
-      
-      // sorting
-      this.Tasks.sort((a, b) => {return this.comparePriority(a, b, false)});
+      console.log('received task ' + task.name + ', ' + task.class + ", priority: " + task.priority);
+      this.Tasks.push(task);
+      this.sort();
 
     },
+
+    sort(){
+      console.log("sorting by: " + this.sortByPriority);
+      if(this.sortByPriority === "priority")
+        this.Tasks.sort((taskA, taskB) => {return this.comparePriority(taskA, taskB, false)});
+      else
+        this.Tasks.sort((taskA, taskB) => {return this.compareDate(taskA, taskB, false)});
+    },
+
     compareDate(taskA, taskB, fromPriority){
-      console.log("TESTING: in copmareDate" );
-      console.log("TESING: " + taskA.dueDate + ", " + taskB.dueDate);
       let date = Date.parse(taskA.dueDate) - Date.parse(taskB.dueDate);
       
       if(date > 0){
@@ -69,19 +85,15 @@ export default {
 
       return this.comparePriority(taskA, taskB, true);
     },
+
     comparePriority(taskA, taskB, fromDate){
-      console.log("TESTING: in comparePriority" );
       let priorityA = this.getPriority(taskA.priority);
       let priorityB = this.getPriority(taskB.priority);
 
       if(priorityA > priorityB) return -1;
-        
       if(priorityB > priorityA) return 1;
-
-      console.log("TESTING: flag" );
-      if(fromDate) return 0; // if date have already been compared then the tasks are the same
       
-      console.log("TESTING: flag" );
+      if(fromDate) return 0; // if date have already been compared then the tasks are the same
       return this.compareDate(taskA, taskB, true);
 
     },
