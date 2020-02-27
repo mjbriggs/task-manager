@@ -56,6 +56,7 @@
 export default {
   data () {
     return {
+      taskIdCounter: 0,
       isAdding: false, // show adding task block and +/- icon
       classInput: '',
       taskInput: '',
@@ -87,19 +88,20 @@ export default {
       }
     },
     addTask () {
-
       if (this.isAdding) {
         if (this.taskInput.length > 0 && this.priorityInput != null &&
           this.classInput.length > 0 && this.dueDateInput.length > 0) {
-
           let dateFields = this.dueDateInput.split('-')
           let reformattedDate = dateFields[1] + '/' + dateFields[2] + '/' + dateFields[0]
-
+          let id = this.taskIdCounter
+          this.taskIdCounter += 1
+          console.log(id)
           let newTask = {
             'class': this.classInput,
             'name': this.taskInput,
             'priority': this.priorityInput,
-            'dueDate': reformattedDate
+            'dueDate': reformattedDate,
+            'id': id
           }
           console.log('Emitting newTask')
           console.log('AddTask.addTask(): ' + newTask)
