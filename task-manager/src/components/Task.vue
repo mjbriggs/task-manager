@@ -9,7 +9,7 @@
       Due Date: {{ task.dueDate }}
     </div>
     </div>
-  <div class='ui bottom attached blue basic button' v-on:click="completeTask">
+  <div class='ui bottom attached blue basic button' v-on:click="completeTask"  v-show='task.priority != "completed"'>
       Complete
   </div>
 </div>
