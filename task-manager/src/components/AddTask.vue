@@ -100,6 +100,7 @@ export default {
             'class': this.classInput,
             'name': this.taskInput,
             'priority': this.priorityInput,
+            'oldPriority': this.priorityInput,
             'dueDate': reformattedDate,
             'id': id
           }

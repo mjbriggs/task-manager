@@ -92,11 +92,12 @@ export default {
     getPriority (taskPriority) {
       if (taskPriority === 'High') {
         return 2
-      }
-      if (taskPriority === 'Medium') {
+      } else if (taskPriority === 'Medium') {
         return 1
-      } else {
+      } else if (taskPriority === 'Low') {
         return 0
+      } else {
+        return -1
       }
     }
   }

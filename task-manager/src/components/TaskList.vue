@@ -1,7 +1,7 @@
 <template>
  <div>
     <p>Tasks</p>
-    <Task v-on:delete-task='deleteTask' v-on:task-complete='completeTask'
+    <Task v-on:delete-task='deleteTask' v-on:task-complete='completeTask' v-on:task-undo-complete='undoComplete'
     v-for='task in Tasks' v-bind:key='task.id' v-bind:task='task'></Task>
   </div>
 </template>
@@ -23,6 +23,12 @@ export default {
       const taskIndex = this.Tasks.indexOf(task)
       this.Tasks[taskIndex].priority = 'completed'
       this.$emit('task-complete')
+      // this.deleteTask(task)
+    },
+    undoComplete (task) {
+      const taskIndex = this.Tasks.indexOf(task)
+      this.Tasks[taskIndex].priority = task.oldPriority
+      // this.$emit('task-undo-complete')
       // this.deleteTask(task)
     }
   }
