@@ -1,6 +1,6 @@
 <template>
-<div class='ui centered card '>
-  <div class='content' >
+<div class='ui centered card ' >
+  <div class='content'  v-bind:style="{ backgroundColor: color}" >
     <div class='header'>
         <p> Class: {{ task.class }},    Name: {{ task.name }}</p>
         <p> Priority: {{ task.priority }} </p>
@@ -22,22 +22,26 @@ export default {
     if (this.task.priority === 'High') {
       return {
         colorBtn: 'ui bottom attached basic button red ',
-        buttonText: 'Complete'
+        buttonText: 'Complete',
+        color: '#FF9F9F'
       }
     } else if (this.task.priority === 'Medium') {
       return {
         colorBtn: 'ui bottom attached basic button yellow ',
-        buttonText: 'Complete'
+        buttonText: 'Complete',
+        color: '#F1CA8F'
       }
     } else if (this.task.priority === 'Low') {
       return {
         colorBtn: 'ui bottom attached basic button green ',
-        buttonText: 'Complete'
+        buttonText: 'Complete',
+        color: '#C2DD9C'
       }
     } else {
       return {
         colorBtn: 'ui bottom attached basic button grey',
-        buttonText: 'Undo'
+        buttonText: 'Undo',
+        color: '#999999'
       }
     }
   },
