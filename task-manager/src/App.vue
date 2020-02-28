@@ -17,7 +17,7 @@
       </label>
     </div>
 
-    <TaskList v-bind:Tasks='Tasks' v-on:task-complete='sort' />
+    <TaskList v-bind:Tasks='Tasks' v-on:task-complete='sort' v-on:task-undo-complete='sort'/>
   </div>
 </template>
 

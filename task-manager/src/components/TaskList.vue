@@ -28,7 +28,7 @@ export default {
     undoComplete (task) {
       const taskIndex = this.Tasks.indexOf(task)
       this.Tasks[taskIndex].priority = task.oldPriority
-      // this.$emit('task-undo-complete')
+      this.$emit('task-undo-complete')
       // this.deleteTask(task)
     }
   }
