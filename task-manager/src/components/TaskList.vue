@@ -1,7 +1,8 @@
 <template>
   <div>
+
     <!-- DropDown for filtering tasks -->
-    <div class='field'>
+    <div class='field' >
       <label>Filter by : </label>
       <sui-dropdown
         placeholder='All'
@@ -59,7 +60,7 @@ export default {
         { text: 'High', value: 'High' },
         { text: 'Medium', value: 'Medium' },
         { text: 'Low', value: 'Low' },
-        { text: 'Completed', value: 'Completed' }
+        { text: 'Completed', value: 'completed' }
       ],
       searchOptions: [
         { text: 'Name', value: 'Name' },
@@ -85,16 +86,16 @@ export default {
       }
     },
     searchFilter (){
-      let subtext = this.searchText
+      let subtext = this.searchText.toLowerCase()
       if(subtext === '') {
         this.filterTasksToShow()
       }
       else{
         if(this.searchOption === 'Name') {
-          this.TasksToShow = this.TasksToShow.filter(t => t.name.includes(subtext))
+          this.TasksToShow = this.TasksToShow.filter(t => t.name.toLowerCase().includes(subtext))
         }
         else if(this.searchOption === 'Class') {
-          this.TasksToShow = this.TasksToShow.filter(t => t.class.includes(subtext))
+          this.TasksToShow = this.TasksToShow.filter(t => t.class.toLowerCase().includes(subtext))
         }
       }
     },
@@ -121,4 +122,10 @@ export default {
 };
 </script>
 <style>
+#test {
+  display: flex;
+  margin:auto;
+  width: 50%;
+  padding: 10px;
+}
 </style>
