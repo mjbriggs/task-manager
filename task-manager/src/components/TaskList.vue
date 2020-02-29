@@ -2,7 +2,7 @@
   <div>
     <!-- DropDown for filtering tasks -->
     <div class='field'>
-      <label>Filter by</label>
+      <label>Filter by : </label>
       <sui-dropdown
         placeholder='All'
         selection
@@ -11,8 +11,23 @@
         />
     </div>
 
+     <!-- Search feature -->
+     <div class='ui action input'>
+      <label>Search </label>
+        <div class='field'>
+          <input type='text' v-model='searchText' defaultValue />
+        </div>
+      
+      <label> in </label>
+      <sui-dropdown
+        placeholder='Name'
+        selection
+        :options='searchOptions'
+        v-model='searchOption'
+        />
+    </div>
+
     <!-- show tasks -->
-    <p>Tasks</p>
     <Task
       v-on:delete-task="deleteTask"
       v-on:task-complete="completeTask"
@@ -21,7 +36,7 @@
       v-bind:key="task.id"
       v-bind:task="task"
     ></Task>
-    
+
   </div>
 </template>
 
@@ -36,19 +51,28 @@ export default {
   data () {
     return {
       TasksToShow: [],
-      taskFilterOption: "All",
+      taskFilterOption: 'All',
+      searchOption: 'Name',
+      searchText: '',
       filterOptions: [
         { text: 'All', value: 'All' },
         { text: 'High', value: 'High' },
         { text: 'Medium', value: 'Medium' },
         { text: 'Low', value: 'Low' },
         { text: 'Completed', value: 'Completed' }
+      ],
+      searchOptions: [
+        { text: 'Name', value: 'Name' },
+        { text: 'Class', value: 'Class' }
       ]
     }
   },
   watch: {
     taskFilterOption: function () {
       this.filterTasksToShow()
+    },
+    searchText: function() {
+      this.searchFilter()
     }
   },
   methods: {
@@ -58,6 +82,20 @@ export default {
         this.TasksToShow = this.Tasks
       } else {
         this.TasksToShow = this.Tasks.filter(t => t.priority === this.taskFilterOption)
+      }
+    },
+    searchFilter (){
+      let subtext = this.searchText
+      if(subtext === '') {
+        this.filterTasksToShow()
+      }
+      else{
+        if(this.searchOption === 'Name') {
+          this.TasksToShow = this.TasksToShow.filter(t => t.name.includes(subtext))
+        }
+        else if(this.searchOption === 'Class') {
+          this.TasksToShow = this.TasksToShow.filter(t => t.class.includes(subtext))
+        }
       }
     },
     deleteTask (task) {
