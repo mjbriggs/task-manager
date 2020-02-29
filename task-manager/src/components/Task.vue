@@ -40,7 +40,7 @@ export default {
     } else {
       return {
         colorBtn: 'ui bottom attached basic button grey',
-        buttonText: 'Undo',
+        buttonText: 'Uncomplete',
         color: '#999999'
       }
     }
@@ -55,15 +55,19 @@ export default {
       if (this.task.priority === 'High') {
         this.colorBtn = 'ui bottom attached basic button red '
         this.buttonText = 'Complete'
+        this.color = '#FF9F9F'
       } else if (this.task.priority === 'Medium') {
         this.colorBtn = 'ui bottom attached basic button yellow '
         this.buttonText = 'Complete'
+        this.color = '#F1CA8F'
       } else if (this.task.priority === 'Low') {
         this.colorBtn = 'ui bottom attached basic button green '
         this.buttonText = 'Complete'
+        this.color = '#C2DD9C'
       } else {
         this.colorBtn = 'ui bottom attached basic button grey'
-        this.buttonText = 'Undo'
+        this.buttonText = 'Uncomplete'
+        this.color = '#999999'
       }
     }
   }
