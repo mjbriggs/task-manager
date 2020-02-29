@@ -2,7 +2,7 @@
   <div>
 
     <!-- DropDown for filtering tasks -->
-    <div class='field' >
+    <div class='field' id="filterDiv" >
       <label>Filter by : </label>
       <sui-dropdown
         placeholder='All'
@@ -13,13 +13,13 @@
     </div>
 
      <!-- Search feature -->
-     <div class='ui action input'>
+     <div class='ui action input' id="searchDiv">
       <label>Search </label>
         <div class='field'>
           <input type='text' v-model='searchText' defaultValue />
         </div>
       
-      <label> in </label>
+      <label id="in"> in </label>
       <sui-dropdown
         placeholder='Name'
         selection
@@ -122,10 +122,14 @@ export default {
 };
 </script>
 <style>
-#test {
-  display: flex;
-  margin:auto;
-  width: 50%;
-  padding: 10px;
+#filterDiv{
+  padding-top:10px;
+}
+#searchDiv{
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+#in{
+  padding: 5px;
 }
 </style>
