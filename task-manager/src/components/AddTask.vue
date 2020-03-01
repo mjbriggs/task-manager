@@ -1,8 +1,8 @@
 <template lang='html'>
-  <div>
+  <div id='addId'>
     <!-- vue requires a main div for the component -->
 
-    <h1>Sort My Tasks</h1>
+    
 
     <div class='ui basic content center aligned segment'>
       <button class='ui basic button icon' v-on:click='toggleAdd'>
@@ -129,4 +129,8 @@ export default {
   }
 }
 </script>
-<style></style>
+<style>
+#addId{
+  padding-bottom: 10px;
+}
+</style>
